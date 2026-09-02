@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\WafLabController;
 use App\Http\Controllers\WafTestController;
 use Illuminate\Support\Facades\Route;
 
@@ -12,3 +13,9 @@ Route::get('/berita/{slug}', [NewsController::class, 'show'])->name('berita.show
 // answered 403 before these routes are reached at all.
 Route::get('/uji-waf', [WafTestController::class, 'index'])->name('uji-waf');
 Route::post('/uji-waf', [WafTestController::class, 'store'])->name('uji-waf.store');
+
+// Harness uji WAF/CRS. Aplikasi hanya memantulkan input dengan escaping
+// penuh (lihat WafLabController) — endpoint ini untuk memverifikasi WAF
+// di depan aplikasi, bukan kerentanan pada aplikasi itu sendiri.
+Route::get('/lab/waf', [WafLabController::class, 'index'])->name('waf.index');
+Route::match(['get', 'post'], '/lab/waf/uji', [WafLabController::class, 'submit'])->name('waf.submit');

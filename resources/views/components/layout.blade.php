@@ -106,11 +106,15 @@
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>
                         Jl. Ipsum No. 21, Dolor &middot; redaksi@lipsum.test
                     </p>
+                    <a href="{{ route('waf.index') }}" class="mt-3 inline-block text-sm text-stone-500 hover:text-rose-600 dark:text-stone-400 dark:hover:text-rose-400">
+                        Lab Uji WAF/CRS &rarr;
+                    </a>
                 </div>
             </div>
             <div class="border-t border-stone-200 py-4 text-center text-xs text-stone-400 dark:border-stone-800">
                 &copy; {{ now()->year }} LipsumPost. Halaman demo tanpa login.
             </div>
         </footer>
+        @stack('scripts')
     </body>
 </html>
