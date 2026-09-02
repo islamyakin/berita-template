@@ -12,7 +12,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        // TLS terminates at the platform's edge, which forwards over HTTP with
+        // X-Forwarded-Proto. Without this Laravel builds every asset() URL as
+        // http:// and the browser blocks them as mixed content.
+        $middleware->trustProxies(at: '*');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(
