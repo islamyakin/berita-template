@@ -12,6 +12,7 @@
         "php": "^8.4",
         "ext-pdo_pgsql": "*",
         "laravel/framework": "^13.17",
+        "laravel/octane": "^2.19",
         "laravel/tinker": "^3.0"
     },
     "require-dev": {
