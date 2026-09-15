@@ -23,7 +23,11 @@ COPY . .
 COPY --from=assets /app/public/build public/build
 RUN composer run-script post-autoload-dump
 
+COPY docker-entrypoint.sh /usr/local/bin/entrypoint
+RUN chmod +x /usr/local/bin/entrypoint
+
 ENV OCTANE_SERVER=frankenphp APP_ENV=production
 EXPOSE 8000
+ENTRYPOINT ["entrypoint"]
 # --workers/--max-requests tune per box; defaults are fine to start.
 CMD ["php", "artisan", "octane:start", "--server=frankenphp", "--host=0.0.0.0", "--port=8000"]

@@ -6,3 +6,4 @@ public/hot
 storage/*.key
 .env
 tests
+database/*.sqlite
